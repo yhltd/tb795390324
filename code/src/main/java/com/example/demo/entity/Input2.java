@@ -11,7 +11,7 @@ public class Input2 {
     /**
      * id自增列
      */
-    @TableId(value = "id" , type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String A;

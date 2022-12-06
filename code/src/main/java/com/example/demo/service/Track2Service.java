@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface Track2Service extends IService<Track2> {
     /**
-     *  查询全部数据
-     * */
+     * 查询全部数据
+     */
     List<Track2> getList();
 }

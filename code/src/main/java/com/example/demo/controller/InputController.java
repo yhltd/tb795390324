@@ -2,13 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.*;
 import com.example.demo.service.*;
+import com.example.demo.util.GsonUtil;
 import com.example.demo.util.ResultInfo;
+import com.example.demo.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -53,7 +57,7 @@ public class InputController {
     @RequestMapping("/save")
     public ResultInfo save(String column, int id, String value, HttpSession session) {
         try {
-            if (inputService.save(column,value,id)) {
+            if (inputService.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -88,7 +92,7 @@ public class InputController {
     @RequestMapping("/save2")
     public ResultInfo save2(String column, int id, String value, HttpSession session) {
         try {
-            if (input2Service.save(column,value,id)) {
+            if (input2Service.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -123,7 +127,7 @@ public class InputController {
     @RequestMapping("/save3")
     public ResultInfo save3(String column, int id, String value, HttpSession session) {
         try {
-            if (input3Service.save(column,value,id)) {
+            if (input3Service.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -158,7 +162,7 @@ public class InputController {
     @RequestMapping("/save4")
     public ResultInfo save4(String column, int id, String value, HttpSession session) {
         try {
-            if (input4Service.save(column,value,id)) {
+            if (input4Service.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -193,7 +197,7 @@ public class InputController {
     @RequestMapping("/save5")
     public ResultInfo save5(String column, int id, String value, HttpSession session) {
         try {
-            if (input5Service.save(column,value,id)) {
+            if (input5Service.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -228,7 +232,7 @@ public class InputController {
     @RequestMapping("/save6")
     public ResultInfo save6(String column, int id, String value, HttpSession session) {
         try {
-            if (input6Service.save(column,value,id)) {
+            if (input6Service.save(column, value, id)) {
                 return ResultInfo.success("修改成功");
             } else {
                 return ResultInfo.success("修改失败");
@@ -254,6 +258,49 @@ public class InputController {
             e.printStackTrace();
             log.error("获取失败：{}", e.getMessage());
             return ResultInfo.error("错误!");
+        }
+    }
+
+    /**
+     * 查询所有
+     *
+     * @return ResultInfo
+     */
+    @RequestMapping("/add5")
+    public ResultInfo add5(String h) {
+        try {
+            if (input5Service.insert("", h, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0")) {
+                return ResultInfo.success("新增成功");
+            } else {
+                return ResultInfo.error("错误!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("新增失败：{}", e.getMessage());
+            return ResultInfo.error("错误!");
+        }
+    }
+
+    /**
+     * 删除
+     *
+     * @return ResultInfo
+     */
+    @RequestMapping("/delete5")
+    public ResultInfo delete5(@RequestBody HashMap map, HttpSession session) {
+        GsonUtil gsonUtil = new GsonUtil(GsonUtil.toJson(map));
+        List<Integer> idList = GsonUtil.toList(gsonUtil.get("idList"), Integer.class);
+        try {
+            if (input5Service.delete(idList)) {
+                return ResultInfo.success("删除成功", idList);
+            } else {
+                return ResultInfo.success("删除失败", idList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("删除失败：{}", e.getMessage());
+            log.error("参数：{}", idList);
+            return ResultInfo.error("删除失败");
         }
     }
 }

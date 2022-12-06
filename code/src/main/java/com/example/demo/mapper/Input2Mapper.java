@@ -17,5 +17,5 @@ public interface Input2Mapper extends BaseMapper<Input2> {
     List<Input2> getList();
 
     @Update("update input2 set ${column} = #{value} where id=#{id}")
-    boolean save(String column,String value,int id);
+    boolean save(String column, String value, int id);
 }

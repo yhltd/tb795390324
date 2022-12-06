@@ -11,7 +11,7 @@ public class Input5 {
     /**
      * id自增列
      */
-    @TableId(value = "id" , type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String G;
@@ -55,4 +55,32 @@ public class Input5 {
     private String Z;
 
     private String AA;
+
+    private String AB;
+
+    private String AC;
+
+    private String AD;
+
+    private String AE;
+
+    private String AF;
+
+    private String AG;
+
+    private String AH;
+
+    private String AI;
+
+    private String AJ;
+
+    private String AK;
+
+    private String AL;
+
+    private String AM;
+
+    private String AN;
+
+    private String AO;
 }

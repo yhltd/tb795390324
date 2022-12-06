@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public interface TrackService extends IService<Track> {
     /**
-     *  获取所有数据
-     * */
+     * 获取所有数据
+     */
     List<Track> getList();
 
 

@@ -62,7 +62,7 @@ function setTable2(data) {
         toolbar: '#table-toolbar',
         toolbarAlign: 'left',
         theadClasses: "thead-light",//这里设置表头样式
-        style:'table-layout:fixed',
+        style: 'table-layout:fixed',
         columns: [
             {
                 field: '',
@@ -160,7 +160,7 @@ function setTable(data) {
         toolbar: '#table-toolbar',
         toolbarAlign: 'left',
         theadClasses: "thead-light",//这里设置表头样式
-        style:'table-layout:fixed',
+        style: 'table-layout:fixed',
         columns: [
             {
                 field: '',

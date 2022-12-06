@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface Lean2Service extends IService<Lean2> {
     /**
-     *  查询全部数据
-     * */
+     * 查询全部数据
+     */
     List<Lean2> getList();
 }

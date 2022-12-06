@@ -11,7 +11,7 @@
 $(function () {
 
     var onload_url = $.session.get('onload_url');
-    if (onload_url != undefined && onload_url !=''){
+    if (onload_url != undefined && onload_url != '') {
         $('#iframe').attr('src', onload_url);
     }
     $.session.set('onload_url', '')
@@ -35,7 +35,7 @@ function $ajax(options, isLoading, loadingEl, success) {
             success(res);
         },
         error: err => {
-            if(err.responseText == 'loseToken'){
+            if (err.responseText == 'loseToken') {
                 alert('身份验证已过期，请重新登录');
                 window.location.href = '/';
                 return;
@@ -88,8 +88,8 @@ function setTextArea(params, el) {
             if ($(textarea).attr('name') == param) {
                 let str = params[param]
                 console.log(str)
-                var reg = new RegExp("<br><br>","g")
-                var newstr = str.replace(reg,"\n")
+                var reg = new RegExp("<br><br>", "g")
+                var newstr = str.replace(reg, "\n")
                 console.log(newstr)
                 $(textarea).val(newstr);
                 return false;
@@ -100,28 +100,28 @@ function setTextArea(params, el) {
 
 function checkForm(el) {
     let result = true
-    $(el + ' input').each(function(index,input){
+    $(el + ' input').each(function (index, input) {
         let isRequired = $(input).data('required');
-        if(isRequired == "1"){
+        if (isRequired == "1") {
             return true;
         }
-        if($(input).val() == '' || $(input).val() <= 0){
-            $(input).next().css('display','block');
+        if ($(input).val() == '' || $(input).val() <= 0) {
+            $(input).next().css('display', 'block');
             result = false
-        }else{
-            $(input).next().css('display','none');
+        } else {
+            $(input).next().css('display', 'none');
         }
     });
-    $(el + ' select').each(function(index,select){
+    $(el + ' select').each(function (index, select) {
         let isRequired = $(select).data('required');
-        if(isRequired == "1"){
+        if (isRequired == "1") {
             return true;
         }
-        if($(select).val() == '' || $(select).val() == undefined){
-            $(select).next().css('display','block');
+        if ($(select).val() == '' || $(select).val() == undefined) {
+            $(select).next().css('display', 'block');
             result = false
-        }else{
-            $(select).next().css('display','none');
+        } else {
+            $(select).next().css('display', 'none');
         }
     });
     return result;
@@ -192,11 +192,11 @@ function setTableSelection(tableEl, rowIndex, isSelect) {
 
 
 $(function () {
-    $('#out-a').click(function(){
+    $('#out-a').click(function () {
         window.location.href = '/';
     })
 
-    $('#refresh_btn').click(function(){
+    $('#refresh_btn').click(function () {
         location.reload();
     })
 

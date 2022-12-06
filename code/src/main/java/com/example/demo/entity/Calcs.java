@@ -11,7 +11,7 @@ public class Calcs {
     /**
      * id自增列
      */
-    @TableId(value = "id" , type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String kong;
@@ -243,7 +243,6 @@ public class Calcs {
     private String DJ;
 
     private String DK;
-
 
 
 }

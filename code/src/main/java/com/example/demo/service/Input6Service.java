@@ -10,5 +10,5 @@ import java.util.List;
 public interface Input6Service extends IService<Input6> {
     List<Input6> getList();
 
-    boolean save(String column,String value,int id);
+    boolean save(String column, String value, int id);
 }

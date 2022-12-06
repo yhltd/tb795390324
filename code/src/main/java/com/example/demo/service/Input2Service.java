@@ -9,12 +9,12 @@ import java.util.List;
 @Service
 public interface Input2Service extends IService<Input2> {
     /**
-     *  查询全部数据
-     * */
+     * 查询全部数据
+     */
     List<Input2> getList();
 
     /**
-     *  即时修改
-     * */
-    boolean save(String column,String value,int id);
+     * 即时修改
+     */
+    boolean save(String column, String value, int id);
 }

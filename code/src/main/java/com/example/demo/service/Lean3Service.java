@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface Lean3Service extends IService<Lean3> {
     /**
-     *  查询全部数据
-     * */
+     * 查询全部数据
+     */
     List<Lean3> getList();
 }

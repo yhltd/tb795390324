@@ -11,7 +11,7 @@ public class Lean {
     /**
      * id自增列
      */
-    @TableId(value = "id" , type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -223,7 +223,6 @@ public class Lean {
      * AP
      */
     private String AP;
-
 
 
 }

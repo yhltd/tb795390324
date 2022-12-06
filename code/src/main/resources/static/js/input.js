@@ -140,6 +140,90 @@ $(function () {
         setTable6(input6);
         setTable(input);
     });
+
+    //点击rider新增按钮
+    $("#add-btn").click(function () {
+        $('#add-modal').modal('show');
+    });
+
+    //新增窗体关闭按钮
+    $('#add-close-btn').click(function () {
+        $('#add-modal').modal('hide');
+    });
+
+    //新增窗体提交按钮
+    $('#add-submit-btn').click(function () {
+        var h = $('#add-h').val();
+        $ajax({
+            type: 'post',
+            url: '/input/add5',
+            data: {
+                h: h,
+            },
+            async: false,
+        }, false, '', function (res) {
+            if (res.code == 200) {
+                alert(res.msg);
+                getList();
+                getList2();
+                getList3();
+                getList4();
+                getList5();
+                getList6();
+
+                setTable2(input2);
+                setTable3(input3);
+                setTable4(input4);
+                setTable5(input5);
+                setTable6(input6);
+                setTable(input);
+                $('#add-h').val("");
+                $('#add-modal').modal('hide');
+            }
+        })
+    });
+
+    //点击删除按钮
+    $('#delete-btn').click(function () {
+        var msg = confirm("确认要删除吗？");
+        if (msg) {
+            let rows = getTableSelection("#input5Table");
+            if (rows.length == 0) {
+                alert('请选择要删除的数据！');
+                return;
+            }
+            let idList = [];
+            $.each(rows, function (index, row) {
+                idList.push(row.data.id)
+            });
+            $ajax({
+                type: 'post',
+                url: '/input/delete5',
+                data: JSON.stringify({
+                    idList: idList
+                }),
+                dataType: 'json',
+                contentType: 'application/json;charset=utf-8'
+            }, false, '', function (res) {
+                if (res.code == 200) {
+                    alert(res.msg);
+                    getList();
+                    getList2();
+                    getList3();
+                    getList4();
+                    getList5();
+                    getList6();
+
+                    setTable2(input2);
+                    setTable3(input3);
+                    setTable4(input4);
+                    setTable5(input5);
+                    setTable6(input6);
+                    setTable(input);
+                }
+            })
+        }
+    });
 });
 
 function setTable(data) {
@@ -177,7 +261,7 @@ function setTable(data) {
                 width: 100,
             }, {
                 field: 'b',
-                title: '',
+                title: 'Alphabet',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -186,19 +270,19 @@ function setTable(data) {
                 }
             }, {
                 field: 'c',
-                title: '',
+                title: 'Alphabet',
                 align: 'center',
                 sortable: true,
                 width: 100,
             }, {
                 field: 'd',
-                title: '',
+                title: 'Alphabet',
                 align: 'center',
                 sortable: true,
                 width: 100,
             }, {
                 field: 'e',
-                title: '',
+                title: 'Alphabet',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -242,7 +326,7 @@ function setTable2(data) {
                 width: 100,
             }, {
                 field: 'b',
-                title: '',
+                title: 'Data',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -251,7 +335,7 @@ function setTable2(data) {
                 }
             }, {
                 field: 'c',
-                title: '',
+                title: 'Description',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -378,7 +462,7 @@ function setTable4(data) {
                 width: 100,
             }, {
                 field: 'b',
-                title: '',
+                title: 'Data',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -423,6 +507,9 @@ function setTable5(data) {
                 align: 'center',
                 sortable: true,
                 width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="G5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'G\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
             }, {
                 field: 'h',
                 title: 'Rider profiles',
@@ -594,8 +681,136 @@ function setTable5(data) {
                 formatter: function (value, row, index) {
                     return '<input id="AA5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AA\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
                 }
+            }, {
+                field: '',
+                title: '',
+                align: 'center',
+                sortable: true,
+                width: 100,
+            }, {
+                field: 'ac',
+                title: 'Calculated in this ride:',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AC5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AC\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ad',
+                title: 'Energy total, KJ',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AD5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AD\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ae',
+                title: 'Over CP energy, KJ',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AE5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AE\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'af',
+                title: '5 sec power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AF5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AF\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ag',
+                title: '1 min power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AG5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AG\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ah',
+                title: '3 min power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AH5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AH\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: '',
+                title: '',
+                align: 'center',
+                sortable: true,
+                width: 100,
+            }, {
+                field: 'aj',
+                title: 'Percentages vs. max',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AJ5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AJ\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ak',
+                title: 'Energy total, KJ',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AK5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AK\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'al',
+                title: 'Over CP energy, KJ',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AL5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AL\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'am',
+                title: '5 sec power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AM5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AM\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'an',
+                title: '1 min power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AN5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AN\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
+            }, {
+                field: 'ao',
+                title: '3 min power',
+                align: 'center',
+                sortable: true,
+                width: 100,
+                formatter: function (value, row, index) {
+                    return '<input id="AO5' + row.id + '" onblur="javascript:columnUpd5(' + row.id + ',' + '\'AO\'' + ')" value="' + value + '" class="form-control" style="width: 95%;font-size:13px"  >'
+                }
             }
         ],
+        onClickRow: function (row, el) {
+            let isSelect = $(el).hasClass('selected');
+            if (isSelect) {
+                $(el).removeClass('selected')
+            } else {
+                $(el).addClass('selected')
+            }
+        }
     })
 }
 
@@ -634,7 +849,7 @@ function setTable6(data) {
                 width: 100,
             }, {
                 field: 'g',
-                title: '',
+                title: 'Data',
                 align: 'center',
                 sortable: true,
                 width: 100,
@@ -643,7 +858,7 @@ function setTable6(data) {
                 }
             }, {
                 field: 'h',
-                title: '',
+                title: 'Description',
                 align: 'center',
                 sortable: true,
                 width: 100,

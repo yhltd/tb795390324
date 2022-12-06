@@ -31,14 +31,24 @@
             <i class="bi bi-arrow-clockwise icon"></i>
             刷新
         </button>
+        <button id="add-btn" class="btn btn-primary">
+            <i class="bi bi-plus-square icon"></i>
+            新增Rider
+        </button>
+        <button id="delete-btn" class="btn btn-primary">
+            <i class="bi bi-trash"></i>
+            删除Rider
+        </button>
         <a class="btn btn-primary" style="color: white;padding-top: 8px">当前页：Input_Output</a>
     </div>
 </div>
 
-<div id="upd_1" class="alert alert-success alert-dismissible" hidden="hidden" style="float:right;margin-bottom: 0;margin-top: 20px;margin-right: 10px;">
+<div id="upd_1" class="alert alert-success alert-dismissible" hidden="hidden"
+     style="float:right;margin-bottom: 0;margin-top: 20px;margin-right: 10px;">
     <strong>保存成功!</strong>
 </div>
-<div id="upd_2" class="alert alert-danger alert-dismissible"  hidden="hidden" style="float:right;margin-bottom: 0;margin-top: 20px;margin-right: 10px;">
+<div id="upd_2" class="alert alert-danger alert-dismissible" hidden="hidden"
+     style="float:right;margin-bottom: 0;margin-top: 20px;margin-right: 10px;">
     <strong>保存失败!</strong>
 </div>
 
@@ -49,6 +59,37 @@
     <table id="input4Table"></table>
     <table id="input5Table"></table>
     <table id="input6Table"></table>
+</div>
+
+<div id="add-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">录入</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-form" class="needs-validation">
+                    <div class="form-group">
+                        <label for="add-h">Rider profiles</label>
+                        <input id="add-h" name="h" type="text" class="form-control" autocomplete="off">
+                    </div>
+                </form>
+            </div>
+            <div class="border-top" style="padding: 15px;">
+                <button id="add-submit-btn" type="button" class="btn btn-primary">
+                    <i class="bi bi-arrow-bar-up icon"></i>
+                    提交
+                </button>
+                <button id="add-close-btn" type="button" class="btn btn-primary left-margin">
+                    <i class="bi bi-x-circle icon"></i>
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
